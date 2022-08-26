@@ -4,7 +4,7 @@ export default function TodoList({tasklist, setTaskList}) {
     useEffect(() => {
         fetch('https://three-do-api-rf.web.app/tasks')
         .then(results => results.json())
-        .then(setTaskList)
+        .then(data => {setTaskList(data)})
         .catch(console.error)
     },[setTaskList])
 
@@ -14,9 +14,10 @@ export default function TodoList({tasklist, setTaskList}) {
     }
     return (
         <ul>
-            {tasklist.map(task =>(
+            {tasklist.map(task => (
                 <li key={task.id}>{task.task}</li>
-            ))}
+            )
+            )}
 
         </ul>
     )
